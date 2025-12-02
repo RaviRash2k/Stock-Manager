@@ -17,8 +17,8 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="w-full flex justify-center mt-10 px-4">
-      <form className="bg-white shadow-lg rounded-xl p-7 w-full max-w-xl space-y-5">
+    <div className="w-full flex bg-gray-100 justify-center px-4">
+      <form className="bg-white shadow-lg rounded-xl p-7 w-full max-w-xl mt-10 space-y-5">
 
         <div>
           <p className="mb-1 font-medium">Upload Image</p>
@@ -51,7 +51,7 @@ const AddProduct = () => {
             name="name"
             value={data.name}
             placeholder="Product name"
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-theme outline-none"
           />
         </div>
 
@@ -63,7 +63,7 @@ const AddProduct = () => {
             name="description"
             value={data.description}
             placeholder="Product description"
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-theme outline-none"
           />
         </div>
 
@@ -75,7 +75,7 @@ const AddProduct = () => {
             name="category"
             value={data.category}
             placeholder="Category"
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-theme outline-none"
           />
         </div>
 
@@ -87,7 +87,7 @@ const AddProduct = () => {
             name="price"
             value={data.price}
             placeholder="Price"
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-theme outline-none"
           />
         </div>
 
@@ -99,13 +99,13 @@ const AddProduct = () => {
             name="quantity"
             value={data.quantity}
             placeholder="Quantity"
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-theme outline-none"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold"
+          className="w-full bg-theme text-white p-3 rounded-lg font-semibold"
         >
           Add
         </button>
