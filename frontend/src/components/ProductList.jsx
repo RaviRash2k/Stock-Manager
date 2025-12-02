@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import search from '../assets/search.png'
+import { StoreContext } from '../context/StoreContext'
 
-const ProductList = ({setProductPopup}) => {
+const ProductList = () => {
 
-  const [state, setState] = useState("")
+  const {setProductPopup} = useContext(StoreContext)
 
   const products = [
     { name: "Product A", category: "Electronics", price: 5000, qty: 10 },

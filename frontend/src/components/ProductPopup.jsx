@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { StoreContext } from '../context/StoreContext';
 
-const ProductPopup = ({setProductPopup, productPopup, product}) => {
+const ProductPopup = ({product}) => {
+
+    const {productPopup, setProductPopup} = useContext(StoreContext);
 
     const [data, setData] = useState({
       name: product?.name,

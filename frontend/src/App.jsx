@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { StoreContext } from './context/StoreContext'
 import Sidebar from './components/Sidebar'
 import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/LoginPage'
@@ -10,17 +11,17 @@ import ProductPopup from './components/ProductPopup'
 
 const App = () => {
 
-  const [productPopup, setProductPopup] = useState("no")
+  const { productPopup } = useContext(StoreContext)
 
   return (
     <>
-      {productPopup === "no" ? <></> : <ProductPopup productPopup={productPopup} setProductPopup={setProductPopup}/>}
+      {productPopup !== "no" && <ProductPopup/>}
 
       <div className='flex'>
         <Sidebar/>
 
         <Routes>
-          <Route path='/' element={<Dashboard setProductPopup={setProductPopup}/>}/>
+          <Route path='/' element={<Dashboard/>}/>
           <Route path='/addProduct' element={<AddProduct/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/reporteBug' element={<ReportBug/>}/>
