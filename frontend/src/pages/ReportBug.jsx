@@ -1,15 +1,45 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 
 const ReportBug = () => {
   
   const [data, setData] = useState({
     title: "",
+    email: "",
     message: ""
   })
 
   const changeHandler = (e) => {
-    setData({...data, [e.target.name] : [e.target.value]})
+    setData({...data, [e.target.name] : e.target.value})
   }
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      title: data.title,
+      email: data.email,
+      message: data.message,
+      to_email: "ravindurashmithapg@gmail.com",
+      from_name: data.email
+    };
+
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+    .then(() => {
+      console.log("Email sent successfully!");
+      alert("Report submitted successfully!");
+      setData({ title: "", email: "", message: "" });
+    })
+    .catch((error) => {
+      console.error("Email send failed:", error);
+      alert("Failed to send report. Please try again.");
+    });
+  };
 
   return (
 
@@ -22,7 +52,7 @@ const ReportBug = () => {
         <div className="bg-white shadow-lg rounded-xl p-5 sm:p-6 md:p-8 w-full lg:w-1/2">
           <div>
 
-            <form className="space-y-4 sm:space-y-5">
+            <form onSubmit={sendEmail} className="space-y-4 sm:space-y-5">
 
               <div>
                 <label className="block text-gray-700 mb-2 font-medium text-sm sm:text-base">Bug Title</label>
@@ -30,6 +60,18 @@ const ReportBug = () => {
                   type="text"
                   name="title"
                   value={data.title}
+                  onChange={changeHandler}
+                  className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-theme transition"
+                  placeholder="Enter bug title..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2 font-medium text-sm sm:text-base">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={data.email}
                   onChange={changeHandler}
                   className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-theme transition"
                   placeholder="Enter bug title..."
