@@ -49,6 +49,7 @@ const ProductPopup = ({product}) => {
         {productPopup === "view" && (
           <div className="space-y-2 text-gray-700">
             <p><span className="font-semibold">Name:</span> {product?.name}</p>
+            <p><span className="font-semibold">description:</span> {product?.description}</p>
             <p><span className="font-semibold">Category:</span> {product?.category}</p>
             <p><span className="font-semibold">Price:</span> ${product?.price}</p>
             <p><span className="font-semibold">Quantity:</span> {product?.quantity}</p>
@@ -67,6 +68,14 @@ const ProductPopup = ({product}) => {
               onChange={onChangeHandler}
               className="w-full border p-2 rounded"
               placeholder="Product Name"
+            />
+
+            <input
+              name="name"
+              value={data.description}
+              onChange={onChangeHandler}
+              className="w-full border p-2 rounded"
+              placeholder="Product description"
             />
 
             <input
