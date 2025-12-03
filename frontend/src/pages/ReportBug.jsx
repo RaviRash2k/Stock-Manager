@@ -31,12 +31,10 @@ const ReportBug = () => {
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
-      console.log("Email sent successfully!");
       alert("Report submitted successfully!");
       setData({ title: "", email: "", message: "" });
     })
     .catch((error) => {
-      console.error("Email send failed:", error);
       alert("Failed to send report. Please try again.");
     });
   };
