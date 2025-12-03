@@ -1,6 +1,12 @@
 import userModel from "../models/userModel.js";
 import validator from 'validator'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+//generate jwt token
+const generateToken = (id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET), { expiresIn: "2h" };
+}
 
 //Register user
 const registerUser = async (req, res) => {
