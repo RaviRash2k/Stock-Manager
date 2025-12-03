@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 //generate jwt token
 const generateToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET), { expiresIn: "2h" };
+    return jwt.sign({id}, process.env.JWT_SECRET);
 }
 
 //Register user
@@ -54,7 +54,31 @@ const registerUser = async (req, res) => {
 
 //login user
 const loginUser = async (req, res) => {
+    const {email, password} = req.body;
 
+    try {
+        //user registered?
+        const user = await userModel.findOne({email});
+
+        if(!user){
+            return res.json({success: false, message: "enter valid email!"})
+        }
+
+        //password match
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if(!isMatch){
+            return res.json({success: false, message: "enter valid password!"})
+        }
+
+        //create token
+        const token = generateToken(user._id);
+        return res.json({success: true, token})
+
+
+    } catch (error) {
+        
+    }
 }
 
 export {registerUser, loginUser}
