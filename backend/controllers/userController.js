@@ -11,7 +11,7 @@ const generateToken = (id) => {
 //Register user
 const registerUser = async (req, res) => {
 
-    const {name, email, password} = req.body;
+    const {name, email, password, rePassword} = req.body;
 
     try{
         //email exists
@@ -26,9 +26,14 @@ const registerUser = async (req, res) => {
             return res.json({success: false, message: "Enter valid email!"})
         }  
 
+        //password matched?
+        if(password !== rePassword){
+            return res.json({success: false, message: "Re enter above password!"})
+        }
+
         //password strong
         if(!password || password.length > 8){
-            return res.json({success: false, message: "password is not strobg!"})
+            return res.json({success: false, message: "password is not strong!"})
         }
 
         //hashing password
