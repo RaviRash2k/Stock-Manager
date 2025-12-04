@@ -9,7 +9,8 @@ const LoginPage = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    rePassword: ""
   });
 
   const handleChange = (e) => {
@@ -75,6 +76,29 @@ const LoginPage = () => {
               required
             />
           </div>
+
+          {state === "Register" ? 
+            <div>
+              <label className="block mb-1 font-medium">Re-Password</label>
+              <input
+                type="password"
+                name="rePassword"
+                value={data.rePassword}
+                onChange={handleChange}
+                className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-theme"
+                placeholder="Enter password again"
+                required
+              />
+            </div>
+          : 
+          <></>
+          }
+
+          {state === "Login" && (
+            <p className="text-right text-sm text-theme cursor-pointer hover:underline">
+              Forgot Password?
+            </p>
+          )}
 
           <button
             type="submit"
