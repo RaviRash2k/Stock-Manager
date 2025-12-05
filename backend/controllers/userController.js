@@ -80,9 +80,10 @@ const loginUser = async (req, res) => {
         const token = generateToken(user._id);
         return res.json({success: true, token})
 
-
-    } catch (error) {
         
+    } catch (error) {
+        console.log(err)
+        res.json({success: false, message: "Error" })
     }
 }
 
