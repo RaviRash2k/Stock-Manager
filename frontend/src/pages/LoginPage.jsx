@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { StoreContext } from '../context/StoreContext';
+import axios from 'axios';
 
 const LoginPage = () => {
+
+  const {url, setToken} = useContext(StoreContext)
 
   // create login state for change page design
   const [state, setState] = useState("Login");
@@ -20,10 +24,28 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
     
+    //create url
+    const endpoint = state === "Register" ? "/api/user/register" : "/api/user/login";
+    const newUrl = `${url}${endpoint}`;
+
+    const response = await axios.post(newUrl, data);
+    
+    if(response.data.success){
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token)
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        rePassword: ""
+      })
+
+    }else{
+      alert(response.data.message)
+    }
   };
 
   return (
