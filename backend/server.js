@@ -3,6 +3,7 @@ import cors from 'cors'
 import { conn } from './config/db.js';
 import 'dotenv/config'
 import userRoute from './routes/userRoute.js';
+import productRoute from './routes/productRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +17,7 @@ conn();
 
 //routes
 app.use('/api/user', userRoute);
-app.use('/api/product', userRoute);
+app.use('/api/product', productRoute);
 
 //listen
 app.listen(PORT, () => {

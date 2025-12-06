@@ -1,14 +1,15 @@
 import express from 'express'
-import { addProduct, deleteProduct, getAllProducts, getOneProduct, updateProduct } from '../controllers/productController';
-import verifyToken from '../middlewares/auth';
+import { addProduct, deleteProduct, getAllProducts, getOneProduct, updateProduct } from '../controllers/productController.js';
+import verifyToken from '../middlewares/auth.js';
 
 const productRoute = express.Router();
 
-productRoute.post('/add', verifyToken, addProduct)
-productRoute.get('/add', verifyToken, getOneProduct)
-productRoute.get('/add', verifyToken, getAllProducts)
-productRoute.post('/add', verifyToken, updateProduct)
-productRoute.post('/add', verifyToken, deleteProduct)
+// productRoute.post('/add', verifyToken, addProduct)
+productRoute.post('/add', addProduct)
+productRoute.get('/product/:id', verifyToken, getOneProduct)
+productRoute.get('/products', verifyToken, getAllProducts)
+productRoute.post('/update/:id', verifyToken, updateProduct)
+productRoute.post('/delete/:id', verifyToken, deleteProduct)
 
 
 export default productRoute;

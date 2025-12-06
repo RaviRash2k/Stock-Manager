@@ -1,6 +1,23 @@
+import productModel from "../models/productModel.js"
+
 //add new product
 const addProduct = async (req, res) => {
+    const product = new productModel({
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        price: req.body.price,
+        quantity:req.body.quantity,
+        // img:"",
+    })
 
+    try {
+        await product.save()
+        res.json({success:true, message:"Product added!"})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message:"Faild to product add!"})
+    }
 }
 
 
