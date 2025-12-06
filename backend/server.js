@@ -16,6 +16,7 @@ conn();
 
 //routes
 app.use('/api/user', userRoute);
+app.use('/api/product', userRoute);
 
 //listen
 app.listen(PORT, () => {

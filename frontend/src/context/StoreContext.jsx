@@ -18,7 +18,7 @@ const StoreContextProvider = (props) => {
 
 
     const contextValue = {
-        setProductPopup, productPopup, setToken, url
+        setProductPopup, productPopup, setToken, url, token
     }
 
     return(
