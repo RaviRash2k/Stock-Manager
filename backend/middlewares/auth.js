@@ -7,12 +7,12 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     //check token exists
-    if(!authHeader || !authHeader.startsWith('Barer')){
+    if(!authHeader || !authHeader.startsWith('Bearer')){
         return res.json({success: false, message: "Token mssing!"})
     }
 
     //get token
-    const token = authHeader.split('')[1];
+    const token = authHeader.split(' ')[1];
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);

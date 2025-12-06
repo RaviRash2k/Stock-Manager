@@ -8,6 +8,7 @@ const addProduct = async (req, res) => {
 
     const product = new productModel({
         name: req.body.name,
+        user: req.user.id,
         description: req.body.description,
         category: req.body.category,
         price: req.body.price,
@@ -25,27 +26,25 @@ const addProduct = async (req, res) => {
 }
 
 
-//get one product
-const getOneProduct = async (req, res) => {
-
-}
-
-
-//get one product
+//get all products
 const getAllProducts = async (req, res) => {
-    
+    try {
+        const data = await productModel.fi
+    } catch (error) {
+        
+    }
 }
 
 
-//get one product
+//update product
 const updateProduct = async (req, res) => {
     
 }
 
 
-//get one product
+//delete product
 const deleteProduct = async (req, res) => {
     
 }
 
-export{addProduct, getOneProduct, getAllProducts, updateProduct, deleteProduct}
+export{addProduct, getAllProducts, updateProduct, deleteProduct}
