@@ -26,3 +26,5 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     
 }
+
+export{addProduct, getOneProduct, getAllProducts, updateProduct, deleteProduct}
