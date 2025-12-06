@@ -1,14 +1,18 @@
 import productModel from "../models/productModel.js"
+import fs from 'fs'
 
 //add new product
 const addProduct = async (req, res) => {
+
+    let image_filename = `${req.file.filename}`;
+
     const product = new productModel({
         name: req.body.name,
         description: req.body.description,
         category: req.body.category,
         price: req.body.price,
         quantity:req.body.quantity,
-        // img:"",
+        image: image_filename
     })
 
     try {

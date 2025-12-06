@@ -18,6 +18,7 @@ conn();
 //routes
 app.use('/api/user', userRoute);
 app.use('/api/product', productRoute);
+app.use('/images', express.static('uploads'))
 
 //listen
 app.listen(PORT, () => {

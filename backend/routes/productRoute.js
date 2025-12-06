@@ -1,11 +1,22 @@
 import express from 'express'
 import { addProduct, deleteProduct, getAllProducts, getOneProduct, updateProduct } from '../controllers/productController.js';
 import verifyToken from '../middlewares/auth.js';
+import multer from 'multer'
 
 const productRoute = express.Router();
 
-// productRoute.post('/add', verifyToken, addProduct)
-productRoute.post('/add', addProduct)
+//Image store engine
+const storage = multer.diskStorage({
+    destination: "uploads",
+    filename:(req, file, cb)=>{
+        return cb(null, `${Date.now()}${file.originalname}`)
+    }
+})
+
+const upload = multer({storage: storage})
+
+// productRoute.post('/add',upload.single("image"), verifyToken, addProduct)
+productRoute.post('/add',upload.single("image"), addProduct)
 productRoute.get('/product/:id', verifyToken, getOneProduct)
 productRoute.get('/products', verifyToken, getAllProducts)
 productRoute.post('/update/:id', verifyToken, updateProduct)
